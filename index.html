@@ -1,26 +1,117 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Be My Valentine ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
+      background: linear-gradient(to bottom, #ffe6e6, #fff);
+      font-family: 'Arial', sans-serif;
       text-align: center;
-      font-family: Arial;
-      background: #ffe6e6;
+      padding: 20px;
+      overflow: hidden;
     }
+
+    h1 {
+      color: #d6336c;
+      font-size: 2.2rem;
+    }
+
+    #buttons {
+      margin-top: 30px;
+      position: relative;
+      height: 200px;
+    }
+
     button {
-      padding: 15px 25px;
+      padding: 15px 30px;
       font-size: 18px;
-      margin: 10px;
+      border: none;
+      border-radius: 25px;
       cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    #yesBtn {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #adb5bd;
+      color: white;
+      position: absolute;
+      left: 50%;
+      top: 80px;
+      transform: translateX(-50%);
+    }
+
+    #cry {
+      position: absolute;
+      left: calc(50% + 80px);
+      top: 85px;
+      font-size: 24px;
+      display: none;
+    }
+
+    #result {
+      display: none;
+      margin-top: 30px;
+    }
+
+    img {
+      width: 200px;
+      max-width: 80%;
+      border-radius: 15px;
+      margin: 10px;
     }
   </style>
 </head>
+
 <body>
-  <h1>Will you be my Valentine? 💕</h1>
-  <img src="https://example.com/heart.png" width="200"/>
-  <br/><br/>
-  <button onclick="alert('Yay! ❤️')">Yes</button>
-  <button onclick="alert('Try again 😄')">No</button>
+
+  <h1>Will you be my Valentine? 💖</h1>
+
+  <div id="buttons">
+    <button id="yesBtn" onclick="sayYes()">YES 😍</button>
+    <button id="noBtn">NO 🙄</button>
+    <div id="cry">😭😭</div>
+  </div>
+
+  <div id="result">
+    <h2>YAY!!! 💕🥰</h2>
+    <p>I knew you'd say YES 😘</p>
+
+    <img src="https://media.giphy.com/media/3oz8xAFtqoOUUrsh7W/giphy.gif">
+    <img src="https://media.giphy.com/media/l4FGpP4lxGGgK5CBW/giphy.gif">
+    <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif">
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const cry = document.getElementById("cry");
+
+    function moveNoButton() {
+      const x = Math.random() * (window.innerWidth - 120);
+      const y = Math.random() * (window.innerHeight - 120);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+      cry.style.left = (x + 80) + "px";
+      cry.style.top = y + "px";
+      cry.style.display = "block";
+    }
+
+    noBtn.addEventListener("mouseover", moveNoButton);
+    noBtn.addEventListener("click", moveNoButton);
+    noBtn.addEventListener("touchstart", moveNoButton);
+
+    function sayYes() {
+      document.getElementById("buttons").style.display = "none";
+      document.getElementById("result").style.display = "block";
+    }
+  </script>
+
 </body>
 </html>
